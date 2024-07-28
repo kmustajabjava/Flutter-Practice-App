@@ -1,0 +1,18 @@
+# flutter_native_splash-development.yaml
+# flutter_native_splash-acceptance.yaml
+# flutter_native_splash-production.yaml
+flutter_native_splash:
+  color: "#ffffff"
+  image: assets/images/collab-bro.png
+  branding: assets/images/collab-bro.png
+  color_dark: "#121212"
+  image_dark: assets/images/collab-bro.png
+  branding_dark: assets/images/collab-bro.png
+
+  android_12:
+    image: assets/images/collab-bro.png
+    icon_background_color: "#ffffff"
+    image_dark: assets/images/collab-bro.png
+    icon_background_color_dark: "#121212"
+
+  web: false
