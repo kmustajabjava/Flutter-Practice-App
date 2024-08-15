@@ -4,3 +4,4 @@ Flutter Practice App: Using GetX for State Management
 2. Custom Animated Splash Screen
 3. OnBoarding Screen too with the use of Liquid Swipe
 4. Welcome Screen
+5. Sign Up & Login
