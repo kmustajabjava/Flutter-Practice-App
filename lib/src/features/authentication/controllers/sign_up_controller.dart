@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:practice_app/src/repository/user_repo/user_repository.dart';
 import '../../../repository/authenticate_repo.dart';
-import '../../core/screens/dashboard/dashboard.dart';
 import '../models/user_model.dart';
 import '../screens/forget_password/forget_passsword_otp/otp_screen.dart';
 

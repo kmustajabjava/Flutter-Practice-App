@@ -20,7 +20,7 @@ class CategoryItem {
         heading: "JavaScript",
         subHeading: "10 Lessons",
         onPress: () {
-          print("Pressed JS");
+          // print("Pressed JS");
         },
       ),
       CategoryItem(
@@ -28,7 +28,7 @@ class CategoryItem {
         heading: "Flutter",
         subHeading: "12 Lessons",
         onPress: () {
-          print("Pressed Flutter");
+          // print("Pressed Flutter");
         },
       ),
       CategoryItem(
@@ -36,7 +36,7 @@ class CategoryItem {
         heading: "HTML",
         subHeading: "4 Lessons",
         onPress: () {
-          print("Pressed HTML");
+          // print("Pressed HTML");
         },
       ),
       CategoryItem(
@@ -44,7 +44,7 @@ class CategoryItem {
         heading: "Kotlin",
         subHeading: "15 Lessons",
         onPress: () {
-          print("Pressed Kotlin");
+          // print("Pressed Kotlin");
         },
       ),
       CategoryItem(
@@ -52,7 +52,7 @@ class CategoryItem {
         heading: "Python",
         subHeading: "15 Lessons",
         onPress: () {
-          print("Pressed Python");
+          // print("Pressed Python");
         },
       ),
 

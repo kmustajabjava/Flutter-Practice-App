@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:practice_app/src/features/authentication/models/user_model.dart';
-import '../../../../constants/sizes.dart';
 import '../../../../constants/text_strings.dart';
 import '../../controllers/profile_controller.dart';
 
@@ -31,20 +30,29 @@ class AllUsers extends StatelessWidget {
                     itemBuilder: (c,index){
                       return Column(
                         children: [
-                          ListTile(
-                            iconColor: Colors.amberAccent,
-                            tileColor: Colors.amber.withOpacity(0.1),
-                            leading: const Icon(LineAwesomeIcons.user),
-                            title: Text("Name: ${snapshot.data![index].fullName}"),
-                            subtitle: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(snapshot.data![index].phoneNo),
-                                Text(snapshot.data![index].email),
-                              ],
+                          Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Colors.black,
+                                width: 1.5,
+                              ),
+                              borderRadius: BorderRadius.circular(10), // Rounded corners
                             ),
-                          ),
-                          const SizedBox(height: 10,),
+                            child:
+                              ListTile(
+                                iconColor: Colors.amberAccent,
+                                tileColor: Colors.amber.withOpacity(0.1),
+                                leading: const Icon(LineAwesomeIcons.user),
+                                title: Text("Name: ${snapshot.data![index].fullName}"),
+                                subtitle: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(snapshot.data![index].phoneNo),
+                                    Text(snapshot.data![index].email),
+                                  ],
+                                ),
+                              ),),
+                             const SizedBox(height: 10,),
                         ],
                       );
                     },
