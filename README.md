@@ -1,7 +1,7 @@
 FLUTTER PRACTICE APP 
 
 DESIGN
-- Folder Structure
+- Folder Structure Similar to MVC
 - Theme Setup
 - Native Splash Screen
 - Custom Splash Screen
