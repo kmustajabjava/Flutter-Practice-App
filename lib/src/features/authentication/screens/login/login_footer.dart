@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
-import '../../../../constants/image_strings.dart';
 import '../../../../constants/sizes.dart';
 import '../../../../constants/text_strings.dart';
+import 'google_login/social_footer.dart';
 
 class LoginFooterWidget extends StatelessWidget {
   const LoginFooterWidget({
@@ -15,15 +14,15 @@ class LoginFooterWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         const Text("OR"),
-        const SizedBox(height: tDefaultSize - 20),
-        SizedBox(
-          width: double.infinity,
-          child: OutlinedButton.icon(
-            icon: const Image(image: AssetImage(tGoogleLogoImage), width: 20.0),
-            onPressed: () {},
-            label: const Text(tSignInWithGoogle,),
-          ),
-        ),
+        // SizedBox(
+        //   width: double.infinity,
+        //   child: OutlinedButton.icon(
+        //     icon: const Image(image: AssetImage(tGoogleLogoImage), width: 20.0),
+        //     onPressed: () {},
+        //     label: const Text(tSignInWithGoogle,),
+        //   ),
+        // ),
+        const SocialFooterWidget(),
         const SizedBox(height: tDefaultSize - 20),
         TextButton(
           onPressed: () {},

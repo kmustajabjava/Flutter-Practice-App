@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:practice_app/src/features/authentication/models/user_model.dart';
 import '../../../../constants/sizes.dart';
 import '../../../../constants/text_strings.dart';
+import '../../../../repository/authenticate_repo.dart';
 import '../../controllers/sign_up_controller.dart';
 
 class SignUpFormWidget extends StatelessWidget {
@@ -74,6 +75,8 @@ class SignUpFormWidget extends StatelessWidget {
                         phoneNo: controller.phoneNo.text.trim(),
                         fullName: controller.fullName.text.trim());
                     SignUpController.instance.createUser(user);
+                    final auth = AuthenticationRepository.instance;
+                    auth.setInitialScreen(auth.firebaseUser);
                   }
                 },
                 child: Text(tSignup.toUpperCase()),

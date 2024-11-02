@@ -1,5 +1,7 @@
 ///Generic Text
 const String tNext = "Next";
+const String tContinue = "Continue";
+const String tBackLogin = "Back to Login";
 const String tLogin = "Login";
 const String tLogout = "Logout";
 const String tDelete = "Delete";
@@ -49,10 +51,10 @@ const String tForgetPasswordSubTitle = "Select one of the options given below to
 const String tResetViaEMail = "Reset via Mail Verification";
 const String tResetViaPhone = "Reset via Phone Verification";
 
-// -- Forget Password Via Phone - Text
+/// -- Forget Password Via Phone - Text
 const String tForgetPhoneSubTitle = "Enter your registered Phone No to receive OTP";
 
-// -- Forget Password Via E-Mail - Text
+/// -- Forget Password Via E-Mail - Text
 const String tForgetMailSubTitle = "Enter your registered E-Mail to receive OTP";
 
 /// -- OTP Screen Text
@@ -91,4 +93,26 @@ const String  tMenu1= "Settings";
 const String  tMenu2= "Billing Details";
 const String  tMenu3= "User Management";
 const String  tMenu4= "Information";
-const String  tMenu5= tLogout;
+
+/// Validation
+const String tEmailCannotEmpty= "Email cannot be empty";
+const String tInvalidEmailFormat= "Invalid email format";
+const String tNoRecordFound= "No record found";
+
+///Email verification
+const String tEmailTitle= "Verify your email address";
+const String tEmailSubTitle1= "We have just send email verification link on your email. Please check email and click on that link to verify your Email address";
+const String tEmailSubTitle2= "if not auto redirected after verification, click on the Continue button";
+const String tEmailResendLink= "Resend E-mail Link";
+
+
+/// Snackbar
+const String tAlert="Alert";
+const String tOhSnap="Oh Snap";
+const String tEmailSent="Hurray!!! Email is on it's way.";
+const String tCongratulation="Congratulations";
+const String tEmailLinkSent="Email link To Reset Password";
+const String tAccountCreatedVerify="Account Created Verify Email";
+
+
+

@@ -1,9 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:practice_app/src/features/authentication/screens/mail_verify/mail_verification.dart';
 import 'package:practice_app/src/repository/exceptions/format_exceptions.dart';
 import '../features/authentication/screens/welcome/welcome_screen.dart';
 import '../features/core/screens/dashboard/dashboard.dart';
+import 'exceptions/exceptions.dart';
 import 'exceptions/firebase_auth_exceptions.dart';
 import 'exceptions/firebase_exceptions.dart';
 import 'exceptions/platform_exceptions.dart';
@@ -13,21 +16,26 @@ class AuthenticationRepository extends GetxController {
 
   //Variables
   final _auth = FirebaseAuth.instance;
-  late final Rx<User?> firebaseUser;
+  late final Rx<User?> _firebaseUser;
   var verificationId = ''.obs;
+  User? get firebaseUser => _firebaseUser.value;
+  String get getUserID => firebaseUser?.uid ?? "";
+  String get getUserEmail => firebaseUser?.email ?? "";
 
   //Will be load when app launches this func will be called and set the firebaseUser state
   @override
   void onReady() {
-    firebaseUser = Rx<User?>(_auth.currentUser);
-    firebaseUser.bindStream(_auth.userChanges());
-    ever(firebaseUser, _setInitialScreen);
+    _firebaseUser = Rx<User?>(_auth.currentUser);
+    _firebaseUser.bindStream(_auth.userChanges());
+    setInitialScreen(_firebaseUser.value);
   }
 
-  _setInitialScreen(User? user) {
+  setInitialScreen(User? user) {
     user == null
         ? Get.offAll(() => const WelcomeScreen())
-        : Get.offAll(() => const Dashboard());
+        : user.emailVerified
+            ? Get.offAll(() => const Dashboard())
+            : Get.offAll(() => const MailVerification());
   }
 
   //FUNC
@@ -68,6 +76,32 @@ class AuthenticationRepository extends GetxController {
     return null;
   }
 
+  Future<UserCredential> signInWithGoogle() async {
+    try {
+      // Trigger the authentication flow
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+      // Obtain the auth details from the request
+      final GoogleSignInAuthentication? googleAuth =
+          await googleUser?.authentication;
+
+      // Create a new credential
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken,
+      );
+
+      // Once signed in, return the UserCredential
+      return await FirebaseAuth.instance.signInWithCredential(credential);
+    } on FirebaseAuthException catch (e) {
+      final ex = TExceptions.fromCode(e.code);
+      throw ex.message;
+    } catch (_) {
+      const ex = TExceptions();
+      throw ex.message;
+    }
+  }
+
   Future<void> phoneAuthentication(String phoneNo) async {
     await _auth.verifyPhoneNumber(
       phoneNumber: phoneNo,
@@ -78,7 +112,7 @@ class AuthenticationRepository extends GetxController {
         if (e.code == 'invalid-phone-number') {
           Get.snackbar('Error', 'The provided phone number is not valid');
         } else {
-          Get.snackbar('Error', 'Something went wrong. Try again. $e' );
+          Get.snackbar('Error', 'Something went wrong. Try again. $e');
         }
       },
       codeSent: (verificationId, resendToken) {
@@ -97,7 +131,19 @@ class AuthenticationRepository extends GetxController {
     return credentials.user != null ? true : false;
   }
 
-  Future<void> logout() async => await _auth.signOut();
+  Future<void> logout() async {
+    try{
+      await GoogleSignIn().signOut();
+      await _auth.signOut();
+      Get.offAll(()=>const WelcomeScreen());
+    }on FirebaseAuthException catch (e) {
+      final ex = TExceptions.fromCode(e.code);
+      throw ex.message;
+    } catch (_) {
+      const ex = TExceptions();
+      throw ex.message;
+    }
+  }
 
   Future<String?> fetchCurrentUserEmail() async {
     User? user = _auth.currentUser;
@@ -105,6 +151,18 @@ class AuthenticationRepository extends GetxController {
       return user.email;
     } else {
       return null;
+    }
+  }
+
+  Future<void> sendEmailVerification() async {
+    try {
+      await _auth.currentUser?.sendEmailVerification();
+    } on FirebaseAuthException catch (e) {
+      final ex = TExceptions.fromCode(e.code);
+      throw ex.message;
+    } catch (_) {
+      const ex = TExceptions();
+      throw ex.message;
     }
   }
 }
