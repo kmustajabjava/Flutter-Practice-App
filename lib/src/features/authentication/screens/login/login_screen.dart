@@ -27,12 +27,11 @@ class LoginScreen extends StatelessWidget {
                 ),
                 LoginForm(),
                 LoginFooterWidget(),
-          ],),
+              ],
+            ),
+          ),
         ),
-        ),
-        ),
+      ),
     );
   }
 }
-
-

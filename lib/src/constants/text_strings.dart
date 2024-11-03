@@ -10,7 +10,7 @@ const String tSignup = "Signup";
 const String tPhoneNo = "Phone No";
 const String tPassword = "Password";
 const String tFullName = "Full Name";
-const String tForgetPassword = "Forget Password";
+const String tForgetPassword = "Forget Password?";
 const String tSignInWithGoogle = "Sign-In with Google";
 
 ///splash screen text
@@ -36,7 +36,7 @@ const String tWelcomeSubTitle = "Let's put your creativity on the development hi
 ///LoginScreen text
 const String tLoginTitle = 'Welcome Back,';
 const String tLoginSubTitle = "Make it Work, Make it Right, Make it Fast";
-const String tRememberMe = "Remember Me?";
+const String tRememberMe = "Remember Me";
 const String tAlreadyHaveAnAccount = "Already have an Account?  ";
 const String tDontHaveAnAccount = "Don't have an Account  ";
 

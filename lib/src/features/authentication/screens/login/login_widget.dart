@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:practice_app/src/constants/colors.dart';
 import 'package:practice_app/src/constants/validator.dart';
 import '../../../../constants/sizes.dart';
 import '../../../../constants/text_strings.dart';
@@ -23,7 +24,7 @@ class LoginForm extends StatelessWidget {
           children: [
             TextFormField(
               controller: controller.email,
-              validator: (value)=>TValidator.validateEmail(value),
+              validator: (value) => TValidator.validateEmail(value),
               decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.person_outline_outlined),
                 enabledBorder: OutlineInputBorder(),
@@ -35,12 +36,12 @@ class LoginForm extends StatelessWidget {
             const SizedBox(height: tDefaultSize - 10),
             TextFormField(
               controller: controller.password,
-              validator: (value)=>TValidator.validatePassword(value),
+              validator: (value) => TValidator.validatePassword(value),
               decoration: InputDecoration(
                 prefixIcon: const Icon(Icons.fingerprint_outlined),
                 suffixIcon: IconButton(
-                    onPressed: () {},
-                    icon: const Icon(Icons.remove_red_eye_sharp)
+                  onPressed: () {},
+                  icon: const Icon(Icons.remove_red_eye_sharp),
                 ),
                 enabledBorder: const OutlineInputBorder(),
                 focusedBorder: const OutlineInputBorder(),
@@ -49,14 +50,30 @@ class LoginForm extends StatelessWidget {
               ),
             ),
             const SizedBox(height: tDefaultSize - 20),
-            Align(
-              alignment: Alignment.centerRight,
-              child: TextButton(
-                onPressed: () {
-                  ForgetPasswordScreen.buildShowModalBottomSheet(context);
-                },
-                child: const Text(tForgetPassword),
-              ),
+            Row(
+              children: [
+                Obx(() => Checkbox(
+                  value: controller.isRememberMeChecked.value,
+                  onChanged: (newValue) {
+                    controller.toggleRememberMe();
+                  },
+                  checkColor: tSecondaryColor,
+                  activeColor: tPrimaryColor,
+                ),),
+                const Text(tRememberMe,),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    onPressed: () {
+                      ForgetPasswordScreen.buildShowModalBottomSheet(context);
+                    },
+                    child: const Text(
+                      tForgetPassword,
+                      style: TextStyle(color: Colors.blueAccent),
+                    ),
+                  ),
+                ),
+              ],
             ),
             SizedBox(
               width: double.infinity,

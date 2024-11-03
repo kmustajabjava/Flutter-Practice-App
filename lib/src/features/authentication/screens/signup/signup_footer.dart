@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:practice_app/src/constants/sizes.dart';
-import '../../../../constants/image_strings.dart';
+import 'package:get/get.dart';
 import '../../../../constants/text_strings.dart';
+import '../login/google_login/social_footer.dart';
+import '../login/login_screen.dart';
 
 class SignUpFooterWidget extends StatelessWidget {
   const SignUpFooterWidget({
@@ -12,21 +13,24 @@ class SignUpFooterWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Text("OR"),
-        const SizedBox(height: tDefaultSize-20,),
-        SizedBox(
-          width: double.infinity,
-          child: OutlinedButton.icon(
-            onPressed: () {},
-            icon: const Image(
-              image: AssetImage(tGoogleLogoImage),
-              width: 20.0,
+        const Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Expanded(
+              child: Divider(),
             ),
-            label: Text(tSignInWithGoogle.toUpperCase()),
-          ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8.0),
+              child: Text("OR"),
+            ),
+            Expanded(
+              child: Divider(),
+            ),
+          ],
         ),
+        const SocialFooterWidget(),
         TextButton(
-          onPressed: () {},
+          onPressed: () => Get.off(() => const LoginScreen()),
           child: Text.rich(TextSpan(children: [
             TextSpan(
               text: tAlreadyHaveAnAccount,
