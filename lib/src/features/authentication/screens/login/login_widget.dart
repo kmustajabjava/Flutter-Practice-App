@@ -52,15 +52,19 @@ class LoginForm extends StatelessWidget {
             const SizedBox(height: tDefaultSize - 20),
             Row(
               children: [
-                Obx(() => Checkbox(
-                  value: controller.isRememberMeChecked.value,
-                  onChanged: (newValue) {
-                    controller.toggleRememberMe();
-                  },
-                  checkColor: tSecondaryColor,
-                  activeColor: tPrimaryColor,
-                ),),
-                const Text(tRememberMe,),
+                Obx(
+                  () => Checkbox(
+                    value: controller.isRememberMeChecked.value,
+                    onChanged: (newValue) {
+                      controller.toggleRememberMe();
+                    },
+                    checkColor: tSecondaryColor,
+                    activeColor: tPrimaryColor,
+                  ),
+                ),
+                const Text(
+                  tRememberMe,
+                ),
                 Align(
                   alignment: Alignment.centerRight,
                   child: TextButton(

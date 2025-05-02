@@ -42,7 +42,6 @@ class LoginController extends GetxController {
       }
 
       auth.setInitialScreen(auth.firebaseUser);
-
     } catch (e) {
       isLoading.value = false;
       THelperFunctions.errorSnackBar(title: tOhSnap, message: e.toString());
@@ -76,7 +75,8 @@ class LoginController extends GetxController {
     final prefs = await SharedPreferences.getInstance();
     email.text = prefs.getString('email') ?? '';
     password.text = prefs.getString('password') ?? '';
-    isRememberMeChecked.value = email.text.isNotEmpty && password.text.isNotEmpty;
+    isRememberMeChecked.value =
+        email.text.isNotEmpty && password.text.isNotEmpty;
   }
 
   void clearCredentials() async {

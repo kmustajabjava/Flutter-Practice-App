@@ -1,8 +1,6 @@
 plugins {
     id "com.android.application"
-    // START: FlutterFire Configuration
     id 'com.google.gms.google-services'
-    // END: FlutterFire Configuration
     id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
 }
@@ -27,7 +25,7 @@ if (flutterVersionName == null) {
 
 android {
     namespace "com.example.practice_app"
-    compileSdk flutter.compileSdkVersion
+    compileSdk 34
     ndkVersion flutter.ndkVersion
 
     compileOptions {
